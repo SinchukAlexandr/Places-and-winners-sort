@@ -10,7 +10,7 @@ public class WinnersSort {
         System.out.println(Arrays.toString(places));
         System.out.println(Arrays.toString(sportsmans));
 
-        sort(places, sportsmans,0,places.length-1);
+        winnersSort(places, sportsmans);
 
         System.out.println();
         System.out.println("Sorted arrays");
@@ -18,29 +18,33 @@ public class WinnersSort {
         System.out.println(Arrays.toString(sportsmans));
 
     }
+    public static String [] winnersSort(int[] results, String[] sportsmans){
+        sort(results, sportsmans, 0, results.length-1);
+        return sportsmans;
+    }
 
-    public static void sort(int[] places, String[] sportsmans, int low, int high) {
+    public static void sort(int[] results, String[] sportsmans, int low, int high) {
 
         int i = low;
         int j = high;
-        int x = places[low + (high - low) / 2];
+        int x = results[low + (high - low) / 2];
 
         do {
-            while (places[i] < x) i++;
-            while (places[j] > x) j--;
+            while (results[i] < x) i++;
+            while (results[j] > x) j--;
             if (i <= j) {
-                int temp = places[i];
-                String temp2 = sportsmans[i];
-                places[i] = places[j];
+                int tempResults = results[i];
+                String tempSportsmans = sportsmans[i];
+                results[i] = results[j];
                 sportsmans[i] = sportsmans[j];
-                places[j] = temp;
-                sportsmans[j] = temp2;
+                results[j] = tempResults;
+                sportsmans[j] = tempSportsmans;
                 i++;
                 j--;
             }
         } while (i <= j);
 
-        if (low < j) sort(places, sportsmans, low, j);
-        if (high > i) sort(places, sportsmans, i, high);
+        if (low < j) sort(results, sportsmans, low, j);
+        if (high > i) sort(results, sportsmans, i, high);
     }
 }
